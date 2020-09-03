@@ -21,10 +21,15 @@ h2 {
 
 h2,
 h3 {
-  color: #45046a;s
+  color: #45046a;
 }
 
-button {
+.form-inline {
+  position: relative;
+  left: 150px;
+}
+
+#search-btn {
   position: relative;
   top: 4px;
   left: 3px;
@@ -34,6 +39,8 @@ button {
   background-color: #28a745;
   border-color: #28a745;
   margin-right: 25px;
+  position: relative;
+  top: 50px;
 }
 
 h3 {
