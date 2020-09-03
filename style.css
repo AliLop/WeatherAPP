@@ -1,3 +1,106 @@
-    h1 {
-        text-align: center;
-    }
+body {
+  font-family: sans-serif;
+  padding: 0 10px;
+}
+
+.container {
+  background-color: #E1ECF4;
+  margin-bottom: 100px;
+  max-width: 450px;
+}
+
+h2 {
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 400;
+  color: #45046a;
+  margin: 0;
+  font-size: 24px;
+  line-height: 48px;
+  text-align: right;
+}
+
+h2,
+h3 {
+  color: #45046a;s
+}
+
+button {
+  position: relative;
+  top: 4px;
+  left: 3px;
+}
+
+#current-location-btn {
+  background-color: #28a745;
+  border-color: #28a745;
+  margin-right: 25px;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+a, h5 {
+  color: #b5076b;
+  font-size: 15px;
+}
+
+.card-title {
+    margin-bottom: 0px;
+}
+
+.today-card, .cards {
+  background-color: #f8f3eb;  
+}
+
+.today-card {
+  max-width: 300px;
+  margin-top: 8px;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.card-text {
+  text-align: center;
+  font-size: 35px;
+  margin-bottom: 0;
+}
+
+.formulas {
+  font-size: 20px;
+  position: relative;
+  top: -10px;
+  left: -3px;
+}
+
+.weather-desc {
+  display: block;
+  font-weight: 300px;
+  font-size: 15px;
+}
+
+small {
+  color: #393e46;
+}
+
+.cards {
+  max-width: 150px;
+}
+
+.cards-body {
+  padding: 8px;
+}
+
+.cards-text {
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 0;
+}
+
+.weather-descs {
+  text-align: center;
+  display: block;
+  font-size: 12px;
+}
