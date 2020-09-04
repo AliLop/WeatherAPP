@@ -88,10 +88,6 @@ a, h5 {
   font-size: 15px;
 }
 
-small {
-  color: #393e46;
-}
-
 .cards {
   max-width: 150px;
 }
@@ -112,7 +108,18 @@ small {
   font-size: 12px;
 }
 
+footer {
+  position: relative;
+  top: -85px;
+  right: 118px;
+}
+
 #github-link {
   text-align: center;
+  font-size: 10px;
+  color: #393e46;
+}
+
+#open-src {
   font-size: 10px;
 }
