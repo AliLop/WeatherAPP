@@ -1,4 +1,4 @@
-//Current Location API
+//My Location API
 function showWeather(response) {
     console.log(response.data);
     let myTemp = document.querySelector("#today-temp");
@@ -42,7 +42,6 @@ function search(event) {
     let currentCity = document.querySelector("#current-city");
 
     if (searchInput.value) {
-        //currentCity.innerHTML = `${searchInput.value.trim().charAt(0).toUpperCase() + searchInput.value.slice(1).toLowerCase()}`;
 
         let city = `${searchInput.value}`;
         let apiKey = "67a9f186348f05c767ebc82bbd14474d";
@@ -85,8 +84,8 @@ searchForm.addEventListener("submit", search);
 function formatDate(now) {
 
     let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-    let day = days[now.getDay()];
-
+    let today = days[now.getDay()];
+    
     let hours = now.getHours();
     if (hours < 10) {
         hours = `0${hours}`;
@@ -97,11 +96,13 @@ function formatDate(now) {
         minutes = `0${minutes}`;
     }
 
-    return `${day} ${hours}:${minutes}`;
+    return `${today} ${hours}:${minutes}`;  
 }
+
+
+
+
 
 let today = document.querySelector("#today");
 let now = new Date();
 today.innerHTML = formatDate(now);
-
-

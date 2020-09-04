@@ -16,7 +16,7 @@
 <body>
     <div class="container border p-4 mt-3 rounded shadow">
         <h2 class="text-grey">WeatherApp</h2>
-            <button type="submit" class="btn btn-primary mb-2" id="current-location-btn">Current location</button>
+            <button type="submit" class="btn btn-primary mb-2" id="current-location-btn">My location <i class="fas fa-map-marker-alt"></i> </button>
             <form class="form-inline" id="search-form">
                 <div class="form-group">
                     <input type="search" class="form-control shadow-sm" id="input-city" placeholder="Type city name..."
@@ -62,7 +62,7 @@
                         <a href="https://www.accuweather.com/es/es/madrid/308526/daily-weather-forecast/308526?day=2"
                             id="tomorrow">Tomorrow</a>
                         <p class="cards-text"><i class="fas fa-cloud-sun"></i>
-                        <div class="weather-descs"> Partially sunny </div>
+                        <div class="weather-descs" id="tomorrow-desc"> Partially sunny </div>
                         </p>
                     </div>
                 </div>
@@ -73,7 +73,7 @@
                         <a href="https://www.accuweather.com/es/es/madrid/308526/daily-weather-forecast/308526?day=3"
                             id="day-after">Day After</a>
                         <p class="cards-text"><i class="fas fa-cloud"></i>
-                        <div class="weather-descs">Cloudy</div>
+                        <div class="weather-descs" id="day-after-desc">Cloudy</div>
                         </p>
                     </div>
                 </div>
@@ -82,9 +82,9 @@
                 <div class="cards">
                     <div class="cards-body">
                         <a href="https://www.accuweather.com/es/es/madrid/308526/daily-weather-forecast/308526?day=6"
-                            id="weekend">Weekend</a>
+                            id="next-day">Next Day</a>
                         <p class="cards-text"><i class="fas fa-cloud-sun-rain"></i>
-                        <div class="weather-descs">Partially rainy</div>
+                        <div class="weather-descs" id="next-day-desc">Partially rainy</div>
                         </p>
                     </div>
                 </div>
