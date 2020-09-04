@@ -99,10 +99,6 @@ function formatDate(now) {
     return `${today} ${hours}:${minutes}`;  
 }
 
-
-
-
-
 let today = document.querySelector("#today");
 let now = new Date();
 today.innerHTML = formatDate(now);
