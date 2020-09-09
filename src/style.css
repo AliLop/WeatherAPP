@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+  line-height: 1.15;
   background-image: url(media/clouds.jpg);
 }
 
@@ -15,7 +16,6 @@ h2 {
   color: #45046a;
   margin: 0;
   font-size: 32px;
-  line-height: 32px;
   text-align: right;
 }
 
@@ -24,23 +24,24 @@ h3 {
   color: #45046a;
 }
 
-.form-inline {
-  position: relative;
-  left: 150px;
-}
-
-#search-btn {
-  position: relative;
-  top: 4px;
-  left: 3px;
-}
-
 #current-location-btn {
   background-color: #28a745;
   border-color: #28a745;
   margin-right: 25px;
   position: relative;
-  top: 50px;
+  top: 44px;
+}
+
+.form-inline {
+  position: relative;
+  left: 163px;
+  bottom: 6px;
+}
+
+#search-btn {
+  position: relative;
+  top: 4px;
+  left: 2px;
 }
 
 h3 {
@@ -71,14 +72,14 @@ a, h5 {
 
 .card-text {
   text-align: center;
-  font-size: 35px;
+  font-size: 40px;
   margin-bottom: 0;
 }
 
-.formulas {
+.units {
   font-size: 20px;
   position: relative;
-  top: -10px;
+  top: -16px;
   left: -3px;
 }
 
@@ -94,6 +95,7 @@ a, h5 {
 
 .cards-body {
   padding: 8px;
+  line-height: 1;
 }
 
 .cards-text {

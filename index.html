@@ -14,9 +14,10 @@
 </head>
 
 <body>
-    <div class="container border p-4 mt-3 rounded shadow">
+    <div class="container border p-3 mt-3 rounded shadow">
         <h2 class="text-grey">WeatherApp</h2>
-            <button type="submit" class="btn btn-primary mb-2" id="current-location-btn">My location <i class="fas fa-map-marker-alt"></i> </button>
+            <button type="submit" class="btn btn-primary mb-2" id="current-location-btn">My location <i
+                class="fas fa-map-marker-alt"></i> </button>
             <form class="form-inline" id="search-form">
                 <div class="form-group">
                     <input type="search" class="form-control shadow-sm" id="input-city" placeholder="Type a city name..."
@@ -25,25 +26,25 @@
                 </div>
             </form>
         <div class="row">
-            <div class="col-sm-8 rounded">
+            <div class="col-sm-8">
                 <div class="today-card rounded">
                     <div class="card-body">
-                        <h3 class="current-city" id="current-city">Madrid</h3>
+                        <h3 class="city" id="city">Madrid</h3>
                         <h5 class="card-title" id="today">Saturday 19:06</h5>
                         <p class="card-text">
-                            
                             <span class="temperature" id="today-temp">29</span>
-                            <span class="formulas">
-                                <a href="#" id="celsius-formula">ºC</a> |
-                                <a href="#" id="fahrenheit-formula">ºF</a>
+                            <span class="units">
+                                ºC |
+                                <a href="#" id="fahrenheit-unit">ºF</a>
                             </span>
                         </p>
                         <div class="weather-desc">
                             <div class="row">
                                 <div class="col-6">
                                     <div class="today-desc" id="today-description"> Mostly sunny</div>
+                                   <small>Last update: 19:06</small> 
                                 </div>
-                                <div class="col-6"> <small>
+                                    <div class="col-6"> <small>
                                         Humidity: <span class="humidity-value" id="humidity-value">77</span>%<br />
                                         Wind: <span class="wind-value" id="wind-value">8</span> km/h <br />
                                     </small>
@@ -56,8 +57,8 @@
         </div>
         <hr />
         <div class="row">
-            <div class="col-sm-4 rounded">
-                <div class="cards">
+            <div class="col-sm-4">
+                <div class="cards rounded">
                     <div class="cards-body">
                         <a href="https://www.accuweather.com/es/es/madrid/308526/daily-weather-forecast/308526?day=2"
                             id="tomorrow">Tomorrow</a>
@@ -67,8 +68,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4 rounded">
-                <div class="cards">
+            <div class="col-sm-4">
+                <div class="cards rounded">
                     <div class="cards-body">
                         <a href="https://www.accuweather.com/es/es/madrid/308526/daily-weather-forecast/308526?day=3"
                             id="day-after">Day After</a>
@@ -78,8 +79,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4 rounded">
-                <div class="cards">
+            <div class="col-sm-4">
+                <div class="cards rounded">
                     <div class="cards-body">
                         <a href="https://www.accuweather.com/es/es/madrid/308526/daily-weather-forecast/308526?day=6"
                             id="next-day">Next Day</a>

@@ -1,11 +1,11 @@
   //My Location API
-  function showWeather(response) {
-    console.log(response.data);
+function showWeather(response) {
+    //console.log(response.data);
     let myTemp = document.querySelector("#today-temp");
     let myTemperature = Math.round(response.data.main.temp);
     myTemp.innerHTML = `${myTemperature}`;
 
-    let myCity = document.querySelector("#current-city");
+    let myCity = document.querySelector("#city");
     myCity.innerHTML = `${
       response.data.name.charAt(0).toUpperCase() +
       response.data.name.slice(1).toLowerCase()
@@ -39,33 +39,31 @@ function getCurrentPosition() {
 let myButton = document.querySelector("#current-location-btn");
 myButton.addEventListener("click", getCurrentPosition);
 
-
-
 // city Input Weather API
 function search(event) {
     event.preventDefault();
     let searchInput = document.querySelector("#input-city");
-    let currentCity = document.querySelector("#current-city");
+    let cityElement = document.querySelector("#city");
 
     if (searchInput.value) {
-
         let city = `${searchInput.value}`;
         let apiKey = "67a9f186348f05c767ebc82bbd14474d";
         let units = "metric";
 
         let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+        //console.log(apiUrl);
 
         function showTemperature(response) {
-            console.log(response.data);
+            //console.log(response.data);
             let todayTemp = Math.round(response.data.main.temp);
             let currentTemp = document.querySelector("#today-temp");
             currentTemp.innerHTML = `${todayTemp}`;
 
             let todayDescription = document.querySelector("#today-description");
             todayDescription.innerHTML = `${response.data.weather[0].description.charAt(0).toUpperCase() + response.data.weather[0].description.slice(1).toLowerCase()}`;
-
-            let currentCity = document.querySelector("#current-city");
-            currentCity.innerHTML = `${response.data.name.charAt(0).toUpperCase() + response.data.name.slice(1).toLowerCase()}`;
+            
+            let cityElement = document.querySelector("#city");
+            cityElement.innerHTML = `${response.data.name.charAt(0).toUpperCase() + response.data.name.slice(1).toLowerCase()}`;
 
             let currentHumidity = document.querySelector("#humidity-value");
             currentHumidity.innerHTML = `${response.data.main.humidity}`;
@@ -77,7 +75,7 @@ function search(event) {
         axios.get(apiUrl).then(showTemperature);
 
     } else {
-        currentCity.innerHTML = null;
+        cityElement.innerHTML = null;
         alert("Please type a city name");
     }
 }
