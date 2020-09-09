@@ -1,6 +1,7 @@
 body {
   font-family: sans-serif;
   padding: 0 10px;
+  background-image: url(media/sky.jpg);
 }
 
 .container {

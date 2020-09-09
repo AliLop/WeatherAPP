@@ -1,22 +1,28 @@
-//My Location API
-function showWeather(response) {
+  //My Location API
+  function showWeather(response) {
     console.log(response.data);
     let myTemp = document.querySelector("#today-temp");
     let myTemperature = Math.round(response.data.main.temp);
     myTemp.innerHTML = `${myTemperature}`;
 
     let myCity = document.querySelector("#current-city");
-    myCity.innerHTML = `${response.data.name.charAt(0).toUpperCase() + response.data.name.slice(1).toLowerCase()}`;
+    myCity.innerHTML = `${
+      response.data.name.charAt(0).toUpperCase() +
+      response.data.name.slice(1).toLowerCase()
+    }`;
 
     let myDescription = document.querySelector("#today-description");
-    myDescription.innerHTML = `${response.data.weather[0].description.charAt(0).toUpperCase() + response.data.weather[0].description.slice(1).toLowerCase()}`;
+    myDescription.innerHTML = `${
+      response.data.weather[0].description.charAt(0).toUpperCase() +
+      response.data.weather[0].description.slice(1).toLowerCase()
+    }`;
 
     let myHumidity = document.querySelector("#humidity-value");
     myHumidity.innerHTML = `${response.data.main.humidity}`;
 
     let myWind = document.querySelector("#wind-value");
     myWind.innerHTML = `${Math.round(response.data.wind.speed)}`;
-}
+  };
 
 function handlePosition(position) {
     let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
