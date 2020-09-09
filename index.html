@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
-    <title>WeatherApp</title>
     <link rel="stylesheet" href="src/style.css" />
     <script src="https://kit.fontawesome.com/2f1cc098b7.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>WeatherApp</title>
 </head>
 
 <body>
@@ -31,7 +31,7 @@
                         <h3 class="current-city" id="current-city">Madrid</h3>
                         <h5 class="card-title" id="today">Saturday 19:06</h5>
                         <p class="card-text">
-                            <i class="fas fa-sun" id="today-icone"></i>
+                            
                             <span class="temperature" id="today-temp">29</span>
                             <span class="formulas">
                                 <a href="#" id="celsius-formula">ºC</a> |
@@ -61,8 +61,8 @@
                     <div class="cards-body">
                         <a href="https://www.accuweather.com/es/es/madrid/308526/daily-weather-forecast/308526?day=2"
                             id="tomorrow">Tomorrow</a>
-                        <p class="cards-text"><i class="fas fa-cloud-sun"></i>
-                        <div class="weather-descs" id="tomorrow-desc"> Partially sunny </div>
+                        <p class="cards-text"><img id="tomorrow-img" src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png" alt="tomorrow-alt">
+                        <div class="weather-descs" id="tomorrow-desc"> Broken clouds </div>
                         </p>
                     </div>
                 </div>
@@ -72,8 +72,8 @@
                     <div class="cards-body">
                         <a href="https://www.accuweather.com/es/es/madrid/308526/daily-weather-forecast/308526?day=3"
                             id="day-after">Day After</a>
-                        <p class="cards-text"><i class="fas fa-cloud"></i>
-                        <div class="weather-descs" id="day-after-desc">Cloudy</div>
+                        <p class="cards-text"><img id="day-after-img" src="https://ssl.gstatic.com/onebox/weather/64/sunny.png" alt="day-after-alt">
+                        <div class="weather-descs" id="day-after-desc">Clear sky</div>
                         </p>
                     </div>
                 </div>
@@ -83,7 +83,7 @@
                     <div class="cards-body">
                         <a href="https://www.accuweather.com/es/es/madrid/308526/daily-weather-forecast/308526?day=6"
                             id="next-day">Next Day</a>
-                        <p class="cards-text"><i class="fas fa-cloud-sun-rain"></i>
+                        <p class="cards-text"><img id="next-day-img" src="https://ssl.gstatic.com/onebox/weather/64/rain_s_cloudy.png" alt="next-day-alt">
                         <div class="weather-descs" id="next-day-desc">Partially rainy</div>
                         </p>
                     </div>
@@ -93,7 +93,7 @@
     </div>
    <footer>
             <div id="github-link">
-                <a id="open-src" rel="GitHub" href="https://github.com/AliLop/WeatherAPP"> Open source code </a> by
+                <a id="open-src" rel="GitHub" href="https://github.com/AliLop/WeatherAPP" target="_blank"> Open-source code, </a> by
                 Alicia Lopez 👩‍💻
             </div>
     </footer>
