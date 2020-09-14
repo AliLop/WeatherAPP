@@ -22,6 +22,25 @@ function showWeather(response) {
 
     let myWind = document.querySelector("#wind-value");
     myWind.innerHTML = `${Math.round(response.data.wind.speed)}`;
+
+    function formatTime(time) {
+
+        let hours = date.getHours();
+        if (hours < 10) {
+            hours = `0${hours}`;
+        }
+
+        let minutes = date.getMinutes();
+        if (minutes < 10) {
+            minutes = `0${minutes}`;
+        }
+
+        return `${hours}:${minutes}`;
+    }
+
+    let timeElement = document.querySelector("#time");
+    let date = new Date();
+    timeElement.innerHTML = formatTime(time);
   };
 
 function handlePosition(position) {
@@ -53,6 +72,7 @@ function search(event) {
         let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
         //console.log(apiUrl);
 
+
         function showTemperature(response) {
             //console.log(response.data);
             let todayTemp = Math.round(response.data.main.temp);
@@ -70,9 +90,32 @@ function search(event) {
 
             let currentWind = document.querySelector("#wind-value");
             currentWind.innerHTML = `${Math.round(response.data.wind.speed)}`;
+        
+            function formatTime(time) {
+
+                let hours = date.getHours();
+                if (hours < 10) {
+                    hours = `0${hours}`;
+                }
+
+                let minutes = date.getMinutes();
+                if (minutes < 10) {
+                    minutes = `0${minutes}`;
+                }
+
+                return `${hours}:${minutes}`;
+            }
+
+            let timeElement = document.querySelector("#time");
+            let date = new Date();
+            timeElement.innerHTML = formatTime(time);
+
         }
 
         axios.get(apiUrl).then(showTemperature);
+
+        
+
 
     } else {
         cityElement.innerHTML = null;
@@ -84,25 +127,16 @@ let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", search);
 
 
-//Current day and time
+//Current day
 function formatDate(now) {
 
     let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
     let today = days[now.getDay()];
     
-    let hours = now.getHours();
-    if (hours < 10) {
-        hours = `0${hours}`;
-    }
-
-    let minutes = now.getMinutes();
-    if (minutes < 10) {
-        minutes = `0${minutes}`;
-    }
-
-    return `${today} ${hours}:${minutes}`;  
+    return `${today}`;  
 }
 
 let today = document.querySelector("#today");
 let now = new Date();
 today.innerHTML = formatDate(now);
+
