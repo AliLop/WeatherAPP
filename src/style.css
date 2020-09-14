@@ -17,6 +17,7 @@ h2 {
   margin: 0;
   font-size: 32px;
   text-align: right;
+  margin-bottom: 6px;
 }
 
 h2,
@@ -29,13 +30,19 @@ h3 {
   border-color: #28a745;
   margin-right: 25px;
   position: relative;
-  top: 44px;
+/*  top: 44px;*/
 }
 
 .form-inline {
   position: relative;
-  left: 163px;
-  bottom: 6px;
+  left: 16px;
+ 
+} 
+
+.form-wrapper {
+ display: flex;
+ flex-direction: row;
+ align-items: baseline;
 }
 
 #search-btn {
