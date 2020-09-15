@@ -29,13 +29,18 @@ function showWeather(response) {
             body.style.backgroundImage = "url(src/media/3broken.jpg)";
         } else if (weather === "overcast clouds") {
             body.style.backgroundImage = "url(src/media/4overcast.jpg)";
+        } else if (weather === "light rain") {
+            body.style.backgroundImage = "url(src/media/5rain.jpg)";
+        } else if (weather === "heavy intensity rain") {
+            body.style.backgroundImage = "url(src/media/6heavyrain.jpg)";
         } else if (weather === "haze") {
-            body.style.backgroundImage = "url(src/media/5haze.jpg)";
+            body.style.backgroundImage = "url(src/media/7haze.jpg)";
         } else {
-            body.style.backgroundImage = "url(src/media/3broken.jpg)";
+            body.style.backgroundImage = "url(src/media/sky.jpg)";
         }
     }
     changeBackground(response.data.weather[0].description);
+            //console.log(response.data.weather[0].description);
 
     let myHumidity = document.querySelector("#humidity-value");
     myHumidity.innerHTML = `${response.data.main.humidity}`;
@@ -114,12 +119,14 @@ function search(event) {
                     body.style.backgroundImage = "url(src/media/3broken.jpg)";
                 } else if (weather === "overcast clouds") {
                     body.style.backgroundImage = "url(src/media/4overcast.jpg)";
+                } else if (weather === "light rain") {
+                    body.style.backgroundImage = "url(src/media/5rain.jpg)";
                 } else if (weather === "heavy intensity rain") {
-                    body.style.backgroundImage = "url(src/media/5heavyrain.jpg)";
+                    body.style.backgroundImage = "url(src/media/6heavyrain.jpg)";
                 } else if (weather === "haze") {
-                    body.style.backgroundImage = "url(src/media/6haze.jpg)";
+                    body.style.backgroundImage = "url(src/media/7haze.jpg)";
                 } else {
-                    body.style.backgroundImage = "url(src/media/3broken.jpg)";
+                    body.style.backgroundImage = "url(src/media/sky.jpg)";
                 }
             }
             changeBackground(response.data.weather[0].description);
