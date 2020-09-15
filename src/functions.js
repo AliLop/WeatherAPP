@@ -31,12 +31,12 @@ function showWeather(response) {
             body.style.backgroundImage = "url(src/media/4overcast.jpg)";
         } else if (weather === "haze") {
             body.style.backgroundImage = "url(src/media/5haze.jpg)";
-        } else if (!weather) {
-            body.style.backgroundImage = "url(src/media/9else.jpg)";
+        } else {
+            body.style.backgroundImage = "url(src/media/3broken.jpg)";
         }
     }
     changeBackground(response.data.weather[0].description);
-    
+
     let myHumidity = document.querySelector("#humidity-value");
     myHumidity.innerHTML = `${response.data.main.humidity}`;
 
@@ -114,10 +114,12 @@ function search(event) {
                     body.style.backgroundImage = "url(src/media/3broken.jpg)";
                 } else if (weather === "overcast clouds") {
                     body.style.backgroundImage = "url(src/media/4overcast.jpg)";
+                } else if (weather === "heavy intensity rain") {
+                    body.style.backgroundImage = "url(src/media/5heavyrain.jpg)";
                 } else if (weather === "haze") {
-                    body.style.backgroundImage = "url(src/media/5haze.jpg)";
-                } else if (!weather) {
-                    body.style.backgroundImage = "url(src/media/9else.jpg)";
+                    body.style.backgroundImage = "url(src/media/6haze.jpg)";
+                } else {
+                    body.style.backgroundImage = "url(src/media/3broken.jpg)";
                 }
             }
             changeBackground(response.data.weather[0].description);
