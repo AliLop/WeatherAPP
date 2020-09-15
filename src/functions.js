@@ -17,6 +17,26 @@ function showWeather(response) {
       response.data.weather[0].description.slice(1).toLowerCase()
     }`;
 
+    function changeBackground(weather) {
+        let body = document.querySelector("body");
+        if (weather === "clear sky") {
+            body.style.backgroundImage = "url(src/media/0clear.jpg)";
+        } else if (weather === "mostly sunny" || weather === "few clouds") {
+            body.style.backgroundImage = "url(src/media/1mostlysunny.jpg)";
+        } else if (weather === "scattered clouds") {
+            body.style.backgroundImage = "url(src/media/2scattered.jpg)";
+        } else if (weather === "broken clouds") {
+            body.style.backgroundImage = "url(src/media/3broken.jpg)";
+        } else if (weather === "overcast clouds") {
+            body.style.backgroundImage = "url(src/media/4overcast.jpg)";
+        } else if (weather === "haze") {
+            body.style.backgroundImage = "url(src/media/5haze.jpg)";
+        } else if (!weather) {
+            body.style.backgroundImage = "url(src/media/9else.jpg)";
+        }
+    }
+    changeBackground(response.data.weather[0].description);
+    
     let myHumidity = document.querySelector("#humidity-value");
     myHumidity.innerHTML = `${response.data.main.humidity}`;
 
@@ -82,6 +102,27 @@ function search(event) {
             let todayDescription = document.querySelector("#today-description");
             todayDescription.innerHTML = `${response.data.weather[0].description.charAt(0).toUpperCase() + response.data.weather[0].description.slice(1).toLowerCase()}`;
             
+            function changeBackground(weather) {
+                let body = document.querySelector("body");
+                if (weather === "clear sky") {
+                    body.style.backgroundImage = "url(src/media/0clear.jpg)";
+                } else if (weather === "mostly sunny" || weather === "few clouds") {
+                    body.style.backgroundImage = "url(src/media/1mostlysunny.jpg)";
+                } else if (weather === "scattered clouds") {
+                    body.style.backgroundImage = "url(src/media/2scattered.jpg)";
+                } else if (weather === "broken clouds") {
+                    body.style.backgroundImage = "url(src/media/3broken.jpg)";
+                } else if (weather === "overcast clouds") {
+                    body.style.backgroundImage = "url(src/media/4overcast.jpg)";
+                } else if (weather === "haze") {
+                    body.style.backgroundImage = "url(src/media/5haze.jpg)";
+                } else if (!weather) {
+                    body.style.backgroundImage = "url(src/media/9else.jpg)";
+                }
+            }
+            changeBackground(response.data.weather[0].description);
+            //console.log(response.data.weather[0].description);
+
             let cityElement = document.querySelector("#city");
             cityElement.innerHTML = `${response.data.name.charAt(0).toUpperCase() + response.data.name.slice(1).toLowerCase()}`;
 
@@ -109,13 +150,9 @@ function search(event) {
             let timeElement = document.querySelector("#time");
             let date = new Date();
             timeElement.innerHTML = formatTime(time);
-
         }
 
         axios.get(apiUrl).then(showTemperature);
-
-        
-
 
     } else {
         cityElement.innerHTML = null;
@@ -139,4 +176,3 @@ function formatDate(now) {
 let today = document.querySelector("#today");
 let now = new Date();
 today.innerHTML = formatDate(now);
-
