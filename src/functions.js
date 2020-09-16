@@ -35,10 +35,13 @@ function showWeather(response) {
             body.style.backgroundImage = "url(src/media/6heavyrain.jpg)";
         } else if (weather === "haze") {
             body.style.backgroundImage = "url(src/media/7haze.jpg)";
+        } else if (weather === "mist" || weather === "fog") {
+            body.style.backgroundImage = "url(src/media/8fog.jpg)";
         } else {
             body.style.backgroundImage = "url(src/media/sky.jpg)";
         }
     }
+
     changeBackground(response.data.weather[0].description);
             //console.log(response.data.weather[0].description);
 
@@ -97,9 +100,8 @@ function search(event) {
         let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
         //console.log(apiUrl);
 
-
         function showTemperature(response) {
-            console.log(response.data);
+            // console.log(response.data);
             let todayTemp = Math.round(response.data.main.temp);
             let currentTemp = document.querySelector("#today-temp");
             currentTemp.innerHTML = `${todayTemp}`;
@@ -123,8 +125,10 @@ function search(event) {
                     body.style.backgroundImage = "url(src/media/5rain.jpg)";
                 } else if (weather === "heavy intensity rain") {
                     body.style.backgroundImage = "url(src/media/6heavyrain.jpg)";
-                } else if (weather === "haze" || weather === "fog") {
+                } else if (weather === "haze") {
                     body.style.backgroundImage = "url(src/media/7haze.jpg)";
+                } else if (weather === "mist" || weather === "fog") {
+                    body.style.backgroundImage = "url(src/media/8fog.jpg)";
                 } else {
                     body.style.backgroundImage = "url(src/media/sky.jpg)";
                 }
@@ -163,7 +167,7 @@ function search(event) {
             let date = new Date();
             timeElement.innerHTML = formatTime(time);
         }
-
+        
         axios.get(apiUrl).then(showTemperature);
 
     } else {
