@@ -1,15 +1,15 @@
   //My Location API
 function showWeather(response) {
-    //console.log(response.data);
+    console.log(response.data);
     let myTemp = document.querySelector("#today-temp");
     let myTemperature = Math.round(response.data.main.temp);
     myTemp.innerHTML = `${myTemperature}`;
 
     let myCity = document.querySelector("#city");
-    myCity.innerHTML = `${
-      response.data.name.charAt(0).toUpperCase() +
-      response.data.name.slice(1).toLowerCase()
-    }`;
+    myCity.innerHTML = `${response.data.name}`;
+
+    let countryElement = document.querySelector("#country");
+    countryElement.innerHTML = `${response.data.sys.country}`;
 
     let myDescription = document.querySelector("#today-description");
     myDescription.innerHTML = `${
@@ -99,7 +99,7 @@ function search(event) {
 
 
         function showTemperature(response) {
-            //console.log(response.data);
+            console.log(response.data);
             let todayTemp = Math.round(response.data.main.temp);
             let currentTemp = document.querySelector("#today-temp");
             currentTemp.innerHTML = `${todayTemp}`;
@@ -123,7 +123,7 @@ function search(event) {
                     body.style.backgroundImage = "url(src/media/5rain.jpg)";
                 } else if (weather === "heavy intensity rain") {
                     body.style.backgroundImage = "url(src/media/6heavyrain.jpg)";
-                } else if (weather === "haze") {
+                } else if (weather === "haze" || weather === "fog") {
                     body.style.backgroundImage = "url(src/media/7haze.jpg)";
                 } else {
                     body.style.backgroundImage = "url(src/media/sky.jpg)";
@@ -133,7 +133,10 @@ function search(event) {
             //console.log(response.data.weather[0].description);
 
             let cityElement = document.querySelector("#city");
-            cityElement.innerHTML = `${response.data.name.charAt(0).toUpperCase() + response.data.name.slice(1).toLowerCase()}`;
+            cityElement.innerHTML = `${response.data.name}`;
+
+            let countryElement = document.querySelector("#country");
+            countryElement.innerHTML = `${response.data.sys.country}`;
 
             let currentHumidity = document.querySelector("#humidity-value");
             currentHumidity.innerHTML = `${response.data.main.humidity}`;

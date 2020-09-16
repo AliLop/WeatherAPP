@@ -1,7 +1,6 @@
 body {
   font-family: sans-serif;
   line-height: 1.15;
-  
 }
 
 .container {
@@ -56,6 +55,10 @@ h3 {
 a, h5 {
   color: #b5076b;
   font-size: 15px;
+}
+
+city:first-letter {
+  text-transform: capitalize;
 }
 
 .card-title {
