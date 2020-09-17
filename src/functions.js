@@ -21,7 +21,7 @@ function showWeather(response) {
         let body = document.querySelector("body");
         if (weather === "clear sky") {
             body.style.backgroundImage = "url(src/media/0clear.jpg)";
-        } else if (weather === "mostly sunny" || weather === "few clouds") {
+        } else if (weather === "few clouds") {
             body.style.backgroundImage = "url(src/media/1mostlysunny.jpg)";
         } else if (weather === "scattered clouds") {
             body.style.backgroundImage = "url(src/media/2scattered.jpg)";
@@ -29,19 +29,24 @@ function showWeather(response) {
             body.style.backgroundImage = "url(src/media/3broken.jpg)";
         } else if (weather === "overcast clouds") {
             body.style.backgroundImage = "url(src/media/4overcast.jpg)";
-        } else if (weather === "light rain") {
+        } else if (weather === "light rain" || weather === "moderate rain") {
             body.style.backgroundImage = "url(src/media/5rain.jpg)";
-        } else if (weather === "heavy intensity rain") {
+        } else if (weather === "heavy intensity rain" || weather === "very heavy rain" || weather === "extreme rain") {
             body.style.backgroundImage = "url(src/media/6heavyrain.jpg)";
+        } else if (weather.includes("rain")) {
+            body.style.backgroundImage = "url(src/media/5rain.jpg)";
         } else if (weather === "haze") {
             body.style.backgroundImage = "url(src/media/7haze.jpg)";
         } else if (weather === "mist" || weather === "fog") {
             body.style.backgroundImage = "url(src/media/8fog.jpg)";
+        } else if (weather.includes("thunderstorm")) {
+            body.style.backgroundImage = "url(src/media/9thunderstorm.jpg)";
+        } else if (weather.includes("snow")) {
+            body.style.backgroundImage = "url(src/media/snowfall.jpg)";
         } else {
             body.style.backgroundImage = "url(src/media/sky.jpg)";
         }
     }
-
     changeBackground(response.data.weather[0].description);
             //console.log(response.data.weather[0].description);
 
@@ -113,7 +118,7 @@ function search(event) {
                 let body = document.querySelector("body");
                 if (weather === "clear sky") {
                     body.style.backgroundImage = "url(src/media/0clear.jpg)";
-                } else if (weather === "mostly sunny" || weather === "few clouds") {
+                } else if (weather === "few clouds") {
                     body.style.backgroundImage = "url(src/media/1mostlysunny.jpg)";
                 } else if (weather === "scattered clouds") {
                     body.style.backgroundImage = "url(src/media/2scattered.jpg)";
@@ -121,14 +126,20 @@ function search(event) {
                     body.style.backgroundImage = "url(src/media/3broken.jpg)";
                 } else if (weather === "overcast clouds") {
                     body.style.backgroundImage = "url(src/media/4overcast.jpg)";
-                } else if (weather === "light rain") {
+                } else if (weather === "light rain" || weather === "moderate rain") {
                     body.style.backgroundImage = "url(src/media/5rain.jpg)";
-                } else if (weather === "heavy intensity rain") {
+                } else if (weather === "heavy intensity rain" || weather === "very heavy rain" || weather === "extreme rain") {
                     body.style.backgroundImage = "url(src/media/6heavyrain.jpg)";
+                } else if (weather.includes("rain")) {
+                    body.style.backgroundImage = "url(src/media/5rain.jpg)";
                 } else if (weather === "haze") {
                     body.style.backgroundImage = "url(src/media/7haze.jpg)";
                 } else if (weather === "mist" || weather === "fog") {
                     body.style.backgroundImage = "url(src/media/8fog.jpg)";
+                } else if (weather.includes("thunderstorm")) {
+                    body.style.backgroundImage = "url(src/media/9thunderstorm.jpg)";
+                } else if (weather.includes("snow")) {
+                    body.style.backgroundImage = "url(src/media/snowfall.jpg)";
                 } else {
                     body.style.backgroundImage = "url(src/media/sky.jpg)";
                 }

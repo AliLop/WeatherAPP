@@ -1,6 +1,7 @@
 body {
   font-family: sans-serif;
   line-height: 1.15;
+  background-image: url(media/sky.jpg);
 }
 
 .container {
