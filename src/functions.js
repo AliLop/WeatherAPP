@@ -17,6 +17,10 @@ function showWeather(response) {
       response.data.weather[0].description.slice(1).toLowerCase()
     }`;
 
+    let todayIcon = document.querySelector("#today-icon");
+    todayIcon.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+    todayIcon.setAttribute("alt", response.data.weather[0].description);
+
     function changeBackground(weather) {
         let body = document.querySelector("body");
         if (weather === "clear sky") {
@@ -57,17 +61,14 @@ function showWeather(response) {
     myWind.innerHTML = `${Math.round(response.data.wind.speed)}`;
 
     function formatTime(time) {
-
         let hours = date.getHours();
         if (hours < 10) {
             hours = `0${hours}`;
         }
-
         let minutes = date.getMinutes();
         if (minutes < 10) {
             minutes = `0${minutes}`;
         }
-
         return `${hours}:${minutes}`;
     }
 
@@ -114,6 +115,10 @@ function search(event) {
             let todayDescription = document.querySelector("#today-description");
             todayDescription.innerHTML = `${response.data.weather[0].description.charAt(0).toUpperCase() + response.data.weather[0].description.slice(1).toLowerCase()}`;
             
+            let todayIcon = document.querySelector("#today-icon");
+            todayIcon.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+            todayIcon.setAttribute("alt", response.data.weather[0].description);
+
             function changeBackground(weather) {
                 let body = document.querySelector("body");
                 if (weather === "clear sky") {
