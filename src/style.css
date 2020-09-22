@@ -13,7 +13,6 @@ body {
 h2 {
   font-family: "Source Sans Pro", sans-serif;
   font-weight: 500;
-  color: #45046a;
   margin: 0;
   font-size: 32px;
   text-align: right;
@@ -83,6 +82,7 @@ city:first-letter {
   text-align: center;
   font-size: 40px;
   margin-bottom: 0;
+  color: rgb(33, 33, 33);
 }
 
 .units {
@@ -90,6 +90,15 @@ city:first-letter {
   position: relative;
   top: -16px;
   left: -3px;
+}
+
+.units .active {
+  color: rgb(33, 33, 33);
+  cursor: default;
+}
+
+.units .active:hover {
+  text-decoration: none;
 }
 
 .weather-desc {

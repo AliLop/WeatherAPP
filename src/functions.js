@@ -1,10 +1,13 @@
  // Temperature 
-
-function showTemperature(response) {
+function showTemp(response) {
     // console.log(response.data);
-    let todayTemp = Math.round(response.data.main.temp);
-    let currentTemp = document.querySelector("#today-temp");
-    currentTemp.innerHTML = `${todayTemp}`;
+
+    celsiusUnit.classList.add("active");
+    fahrenheitUnit.classList.remove("active");
+    
+    let todayTemp = document.querySelector("#today-temp");
+    celsiusTemp = response.data.main.temp; // already created and accessible
+    todayTemp.innerHTML = Math.round(celsiusTemp);
 
     let todayDescription = document.querySelector("#today-description");
     todayDescription.innerHTML = `${response.data.weather[0].description.charAt(0).toUpperCase() + response.data.weather[0].description.slice(1).toLowerCase()}`;
@@ -18,7 +21,7 @@ function showTemperature(response) {
         if (weather === "clear sky") {
             body.style.backgroundImage = "url(src/media/0clear.jpg)";
         } else if (weather === "few clouds") {
-            body.style.backgroundImage = "url(src/media/1mostlysunny.jpg)";
+            body.style.backgroundImage = "url(src/media/1fewclouds.jpg)";
         } else if (weather === "scattered clouds") {
             body.style.backgroundImage = "url(src/media/2scattered.jpg)";
         } else if (weather === "broken clouds") {
@@ -77,6 +80,8 @@ function showTemperature(response) {
     timeElement.innerHTML = formatTime(time);
 }
 
+let celsiusTemp = null; //global variable
+
 
 //My Location API
 function handlePosition(position) {
@@ -84,7 +89,7 @@ function handlePosition(position) {
     let lat = position.coords.latitude;
     let lon = position.coords.longitude;
     let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
-    axios.get(url).then(showTemperature);
+    axios.get(url).then(showTemp);
 }
 
 function getCurrentPosition() {
@@ -105,15 +110,13 @@ function search(event) {
         let city = `${searchInput.value}`;
         let apiKey = "67a9f186348f05c767ebc82bbd14474d";
         let units = "metric";
-
         let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
         //console.log(apiUrl);
-        
-        axios.get(apiUrl).then(showTemperature);
+        axios.get(apiUrl).then(showTemp);
 
     } else {
         cityElement.innerHTML = null;
-        alert("Please type a city name");
+        alert("Please enter a location");
     }
 }
 
@@ -123,7 +126,6 @@ searchForm.addEventListener("submit", search);
 
 //Current day
 function formatDate(now) {
-
     let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
     let today = days[now.getDay()];
     
@@ -133,3 +135,41 @@ function formatDate(now) {
 let today = document.querySelector("#today");
 let now = new Date();
 today.innerHTML = formatDate(now);
+
+
+//Fahrenheit
+function showFahrenheit(event) {
+    event.preventDefault();
+    let currentTemp = document.querySelector("#today-temp");
+    // remove active class from celsius Unit & add it to Fahrenheit in CSS
+    celsiusUnit.classList.remove("active");
+    fahrenheitUnit.classList.add("active");
+
+        if (celsiusTemp === null) {
+        alert("Search by location or city name");
+        } else {
+        let fahrenheitTemp = (celsiusTemp * 9) / 5 + 32;
+        currentTemp.innerHTML = Math.round(fahrenheitTemp);
+        }
+    }
+
+let fahrenheitUnit = document.querySelector("#fahrenheit-unit");
+fahrenheitUnit.addEventListener("click", showFahrenheit);
+
+//Celsius
+function showCelsius(event) {
+    event.preventDefault();
+    celsiusUnit.classList.add("active");
+    fahrenheitUnit.classList.remove("active");
+
+    let currentTemp = document.querySelector("#today-temp"); 
+
+    if (celsiusTemp === null) {
+        alert("Search by location or city name");
+    } else {
+        currentTemp.innerHTML = Math.round(celsiusTemp);
+    }
+}
+
+let celsiusUnit = document.querySelector("#celsius-unit");
+celsiusUnit.addEventListener("click", showCelsius);
