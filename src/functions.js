@@ -1,21 +1,13 @@
-  //My Location API
-function showWeather(response) {
-    console.log(response.data);
-    let myTemp = document.querySelector("#today-temp");
-    let myTemperature = Math.round(response.data.main.temp);
-    myTemp.innerHTML = `${myTemperature}`;
+ // Temperature 
 
-    let myCity = document.querySelector("#city");
-    myCity.innerHTML = `${response.data.name}`;
+function showTemperature(response) {
+    // console.log(response.data);
+    let todayTemp = Math.round(response.data.main.temp);
+    let currentTemp = document.querySelector("#today-temp");
+    currentTemp.innerHTML = `${todayTemp}`;
 
-    let countryElement = document.querySelector("#country");
-    countryElement.innerHTML = `${response.data.sys.country}`;
-
-    let myDescription = document.querySelector("#today-description");
-    myDescription.innerHTML = `${
-      response.data.weather[0].description.charAt(0).toUpperCase() +
-      response.data.weather[0].description.slice(1).toLowerCase()
-    }`;
+    let todayDescription = document.querySelector("#today-description");
+    todayDescription.innerHTML = `${response.data.weather[0].description.charAt(0).toUpperCase() + response.data.weather[0].description.slice(1).toLowerCase()}`;
 
     let todayIcon = document.querySelector("#today-icon");
     todayIcon.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
@@ -52,37 +44,47 @@ function showWeather(response) {
         }
     }
     changeBackground(response.data.weather[0].description);
-            //console.log(response.data.weather[0].description);
+    //console.log(response.data.weather[0].description);
 
-    let myHumidity = document.querySelector("#humidity-value");
-    myHumidity.innerHTML = `${response.data.main.humidity}`;
+    let cityElement = document.querySelector("#city");
+    cityElement.innerHTML = `${response.data.name}`;
 
-    let myWind = document.querySelector("#wind-value");
-    myWind.innerHTML = `${Math.round(response.data.wind.speed)}`;
+    let countryElement = document.querySelector("#country");
+    countryElement.innerHTML = `${response.data.sys.country}`;
+
+    let currentHumidity = document.querySelector("#humidity-value");
+    currentHumidity.innerHTML = `${response.data.main.humidity}`;
+
+    let currentWind = document.querySelector("#wind-value");
+    currentWind.innerHTML = `${Math.round(response.data.wind.speed)}`;
 
     function formatTime(time) {
         let hours = date.getHours();
         if (hours < 10) {
             hours = `0${hours}`;
         }
+
         let minutes = date.getMinutes();
         if (minutes < 10) {
             minutes = `0${minutes}`;
         }
+
         return `${hours}:${minutes}`;
     }
 
     let timeElement = document.querySelector("#time");
     let date = new Date();
     timeElement.innerHTML = formatTime(time);
-  };
+}
 
+
+//My Location API
 function handlePosition(position) {
     let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
     let lat = position.coords.latitude;
     let lon = position.coords.longitude;
     let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
-    axios.get(url).then(showWeather);
+    axios.get(url).then(showTemperature);
 }
 
 function getCurrentPosition() {
@@ -92,10 +94,11 @@ function getCurrentPosition() {
 let myButton = document.querySelector("#current-location-btn");
 myButton.addEventListener("click", getCurrentPosition);
 
-// city Input Weather API
+
+// city Input API
 function search(event) {
     event.preventDefault();
-    let searchInput = document.querySelector("#input-city");
+    let searchInput = document.querySelector("#input-city"); 
     let cityElement = document.querySelector("#city");
 
     if (searchInput.value) {
@@ -105,84 +108,6 @@ function search(event) {
 
         let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
         //console.log(apiUrl);
-
-        function showTemperature(response) {
-            // console.log(response.data);
-            let todayTemp = Math.round(response.data.main.temp);
-            let currentTemp = document.querySelector("#today-temp");
-            currentTemp.innerHTML = `${todayTemp}`;
-
-            let todayDescription = document.querySelector("#today-description");
-            todayDescription.innerHTML = `${response.data.weather[0].description.charAt(0).toUpperCase() + response.data.weather[0].description.slice(1).toLowerCase()}`;
-            
-            let todayIcon = document.querySelector("#today-icon");
-            todayIcon.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
-            todayIcon.setAttribute("alt", response.data.weather[0].description);
-
-            function changeBackground(weather) {
-                let body = document.querySelector("body");
-                if (weather === "clear sky") {
-                    body.style.backgroundImage = "url(src/media/0clear.jpg)";
-                } else if (weather === "few clouds") {
-                    body.style.backgroundImage = "url(src/media/1mostlysunny.jpg)";
-                } else if (weather === "scattered clouds") {
-                    body.style.backgroundImage = "url(src/media/2scattered.jpg)";
-                } else if (weather === "broken clouds") {
-                    body.style.backgroundImage = "url(src/media/3broken.jpg)";
-                } else if (weather === "overcast clouds") {
-                    body.style.backgroundImage = "url(src/media/4overcast.jpg)";
-                } else if (weather === "light rain" || weather === "moderate rain") {
-                    body.style.backgroundImage = "url(src/media/5rain.jpg)";
-                } else if (weather === "heavy intensity rain" || weather === "very heavy rain" || weather === "extreme rain") {
-                    body.style.backgroundImage = "url(src/media/6heavyrain.jpg)";
-                } else if (weather.includes("rain")) {
-                    body.style.backgroundImage = "url(src/media/5rain.jpg)";
-                } else if (weather === "haze") {
-                    body.style.backgroundImage = "url(src/media/7haze.jpg)";
-                } else if (weather === "mist" || weather === "fog") {
-                    body.style.backgroundImage = "url(src/media/8fog.jpg)";
-                } else if (weather.includes("thunderstorm")) {
-                    body.style.backgroundImage = "url(src/media/9thunderstorm.jpg)";
-                } else if (weather.includes("snow")) {
-                    body.style.backgroundImage = "url(src/media/snowfall.jpg)";
-                } else {
-                    body.style.backgroundImage = "url(src/media/sky.jpg)";
-                }
-            }
-            changeBackground(response.data.weather[0].description);
-            //console.log(response.data.weather[0].description);
-
-            let cityElement = document.querySelector("#city");
-            cityElement.innerHTML = `${response.data.name}`;
-
-            let countryElement = document.querySelector("#country");
-            countryElement.innerHTML = `${response.data.sys.country}`;
-
-            let currentHumidity = document.querySelector("#humidity-value");
-            currentHumidity.innerHTML = `${response.data.main.humidity}`;
-
-            let currentWind = document.querySelector("#wind-value");
-            currentWind.innerHTML = `${Math.round(response.data.wind.speed)}`;
-        
-            function formatTime(time) {
-
-                let hours = date.getHours();
-                if (hours < 10) {
-                    hours = `0${hours}`;
-                }
-
-                let minutes = date.getMinutes();
-                if (minutes < 10) {
-                    minutes = `0${minutes}`;
-                }
-
-                return `${hours}:${minutes}`;
-            }
-
-            let timeElement = document.querySelector("#time");
-            let date = new Date();
-            timeElement.innerHTML = formatTime(time);
-        }
         
         axios.get(apiUrl).then(showTemperature);
 
