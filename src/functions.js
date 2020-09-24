@@ -31,61 +31,20 @@ function changeBackground(weather) {
     }
 }
 
-
-// Temperature 
-function showTemp(response) {
-     celsiusUnit.classList.add("active");
-    fahrenheitUnit.classList.remove("active");
-    
-    let todayTemp = document.querySelector("#today-temp");
-    celsiusTemp = response.data.main.temp; // already created and accessible // To store the value
-    todayTemp.innerHTML = Math.round(celsiusTemp);
-
-    let todayDescription = document.querySelector("#today-description");
-    todayDescription.innerHTML = `${response.data.weather[0].description}`;
-
-    let todayIcon = document.querySelector("#today-icon");
-    todayIcon.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
-    todayIcon.setAttribute("alt", response.data.weather[0].description);
-
-    changeBackground(response.data.weather[0].description);
-    //console.log(response.data.weather[0].description);
-
-    let cityElement = document.querySelector("#city");
-    cityElement.innerHTML = `${response.data.name}`;
-
-    let countryElement = document.querySelector("#country");
-    countryElement.innerHTML = `, ${response.data.sys.country}`;
-
-    let currentHumidity = document.querySelector("#humidity-value");
-    currentHumidity.innerHTML = `${response.data.main.humidity}`;
-
-    let currentWind = document.querySelector("#wind-value");
-    currentWind.innerHTML = `${Math.round(response.data.wind.speed)}`;
-
-    function formatTime(time) {
-        let hours = date.getHours();
-        if (hours < 10) {
-            hours = `0${hours}`;
-        }
-        let minutes = date.getMinutes();
-        if (minutes < 10) {
-            minutes = `0${minutes}`;
-        }
-        return `${hours}:${minutes}`;
-    }
-
-    let timeElement = document.querySelector("#time");
-    let date = new Date();
-    timeElement.innerHTML = formatTime(time);
+//Current day
+function formatDate(now) {
+    let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    let today = days[now.getDay()];
+    return `${today}`;
 }
 
-let celsiusTemp = null; //global variable
+let today = document.querySelector("#today");
+let now = new Date();
+today.innerHTML = formatDate(now);
 
-
-// Forecast time
-function formatTime(timestamp) {
-    let date = new date(timestamp);
+// TimeSTAMP
+function formatHours(timestamp) {
+    let date = new Date(timestamp);
     let hours = date.getHours();
     if (hours < 10) {
         hours = `0${hours}`;
@@ -97,42 +56,74 @@ function formatTime(timestamp) {
     return `${hours}:${minutes}`;
 }
 
+// TOday WEATHER INFO 
+function showTemp(response) {
+    celsiusUnit.classList.add("active");
+    fahrenheitUnit.classList.remove("active");
+
+    changeBackground(response.data.weather[0].description);
+
+    let cityElement = document.querySelector("#city");
+    cityElement.innerHTML = `${response.data.name}`;
+
+    let countryElement = document.querySelector("#country");
+    countryElement.innerHTML = `, ${response.data.sys.country}`;
+    
+    let todayIcon = document.querySelector("#today-icon");
+    todayIcon.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+    todayIcon.setAttribute("alt", response.data.weather[0].description);
+
+    let todayTemp = document.querySelector("#today-temp");
+    celsiusTemp = response.data.main.temp; // already created and accessible // To store the value
+    todayTemp.innerHTML = Math.round(celsiusTemp);
+
+    let todayDescription = document.querySelector("#today-description");
+    todayDescription.innerHTML = `${response.data.weather[0].description}`;
+
+    let currentHumidity = document.querySelector("#humidity-value");
+    currentHumidity.innerHTML = `${response.data.main.humidity}`;
+
+    let currentWind = document.querySelector("#wind-value");
+    currentWind.innerHTML = `${Math.round(response.data.wind.speed)}`;
+
+    let timeElement = document.querySelector("#time");
+    timeElement.innerHTML = formatHours(response.data.dt * 1000);
+}
+
+let celsiusTemp = null; //global variable
+
+
 //Forecast 
 function showForecast(response) {
-    console.log(response.data);
-    let forecast1 = response.data.list[1];
-    let forecast2 = response.data.list[2];
-    let forecast3 = response.data.list[3];
+    let forecastElement = document.querySelector("#forecast");
+    forecastElement.innerHTML = null; // so it does not add lines  // resets the search  
+    let forecast = null;
 
-    let forecast1Description = document.querySelector("#forecast1-desc");
-    forecast1Description.innerHTML = `${forecast1.weather[0].description}`;
+    for (let index = 1; index <= 3; index++) {
+        forecast = response.data.list[index];
+        forecastElement.innerHTML += `
+            <div class="col-sm-4">
+                <div class="cards rounded">
+                    <div class="cards-body">
+                        <h5 id="forecast-time">${formatHours(forecast.dt * 1000)}
+                        </h5>
+                        <p class="cards-text" id="forecast-img">
+                            <img  
+                                src="http://openweathermap.org/img/wn/${
+                                    forecast.weather[0].icon}@2x.png"
+                                alt ="${forecast.weather[0].description}" 
+                            />
+                            <div class="weather-descs" id="forecast-desc"> 
+                                ${forecast.weather[0].description}
+                            </div>
+                        </p>
+                    </div>
+                </div>
+            </div>`;   
 
-    let forecast1Icon = document.querySelector("#forecast1-img");
-    forecast1Icon.setAttribute("src", `http://openweathermap.org/img/wn/${forecast1.weather[0].icon}@2x.png`);
-    forecast1Icon.setAttribute("alt", forecast1.weather[0].description);
+        }
 
-    let forecast1Time = document.querySelector("#forecast1-time");
-    //forecast1Time.innerHTML = `${formatTime(forecast1.dt * 1000)}`;
     
-    let forecast2Description = document.querySelector("#forecast2-desc");
-    forecast2Description.innerHTML = `${forecast2.weather[0].description}`;
-
-    let forecast2Icon = document.querySelector("#forecast2-img");
-    forecast2Icon.setAttribute("src", `http://openweathermap.org/img/wn/${forecast2.weather[0].icon}@2x.png`);
-    forecast2Icon.setAttribute("alt", forecast2.weather[0].description);
-
-    let forecast2Time = document.querySelector("#forecast2-time");
-    //forecast2Time.innerHTML = `${forecast2.dt}`;
-
-    let forecast3Description = document.querySelector("#forecast3-desc");
-    forecast3Description.innerHTML = `${forecast3.weather[0].description}`;
-
-    let forecast3Icon = document.querySelector("#forecast3-img");
-    forecast3Icon.setAttribute("src", `http://openweathermap.org/img/wn/${forecast3.weather[0].icon}@2x.png`);
-    forecast3Icon.setAttribute("alt", forecast3.weather[0].description);
-
-    let forecast3Time = document.querySelector("#forecast3-time");
-    //forecast3Time.innerHTML = `${forecast3.dt}`;
 }
 
 
@@ -220,14 +211,3 @@ function showCelsius(event) {
 
 let celsiusUnit = document.querySelector("#celsius-unit");
 celsiusUnit.addEventListener("click", showCelsius);
-
-//Current day
-function formatDate(now) {
-    let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-    let today = days[now.getDay()];
-    return `${today}`;
-}
-
-let today = document.querySelector("#today");
-let now = new Date();
-today.innerHTML = formatDate(now);
