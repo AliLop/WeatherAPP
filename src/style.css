@@ -49,7 +49,7 @@ h3 {
 }
 
 h3 {
-  font-size: 20px;
+  font-size: 18px;
 }
 
 a, h5 {
@@ -80,7 +80,7 @@ city:first-letter {
 
 .card-text {
   text-align: center;
-  font-size: 40px;
+  font-size: 38px;
   margin-bottom: 0;
   color: rgb(33, 33, 33);
 }
@@ -117,6 +117,7 @@ city:first-letter {
 
 .cards-body {
   padding: 8px;
+  padding-bottom: 1px;
 }
 
 .cards-text {

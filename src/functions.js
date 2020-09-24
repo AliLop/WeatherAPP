@@ -37,7 +37,6 @@ function formatDate(now) {
     let today = days[now.getDay()];
     return `${today}`;
 }
-
 let today = document.querySelector("#today");
 let now = new Date();
 today.innerHTML = formatDate(now);
@@ -60,7 +59,6 @@ function formatHours(timestamp) {
 function showTemp(response) {
     celsiusUnit.classList.add("active");
     fahrenheitUnit.classList.remove("active");
-
     changeBackground(response.data.weather[0].description);
 
     let cityElement = document.querySelector("#city");
@@ -92,14 +90,13 @@ function showTemp(response) {
 
 let celsiusTemp = null; //global variable
 
-
 //Forecast 
 function showForecast(response) {
     let forecastElement = document.querySelector("#forecast");
     forecastElement.innerHTML = null; // so it does not add lines  // resets the search  
     let forecast = null;
 
-    for (let index = 1; index <= 3; index++) {
+    for (let index = 0; index <= 2; index++) {
         forecast = response.data.list[index];
         forecastElement.innerHTML += `
             <div class="col-sm-4">
@@ -120,12 +117,8 @@ function showForecast(response) {
                     </div>
                 </div>
             </div>`;   
-
         }
-
-    
 }
-
 
 //My Location API
 function handlePosition(position) {
@@ -146,7 +139,6 @@ function getCurrentPosition() {
 
 let myButton = document.querySelector("#current-location-btn");
 myButton.addEventListener("click", getCurrentPosition);
-
 
 // city Input API
 function search(event) {
@@ -190,7 +182,6 @@ function showFahrenheit(event) {
         currentTemp.innerHTML = Math.round(fahrenheitTemp);
         }
     }
-
 let fahrenheitUnit = document.querySelector("#fahrenheit-unit");
 fahrenheitUnit.addEventListener("click", showFahrenheit);
 
@@ -208,6 +199,5 @@ function showCelsius(event) {
         currentTemp.innerHTML = Math.round(celsiusTemp);
     }
 }
-
 let celsiusUnit = document.querySelector("#celsius-unit");
 celsiusUnit.addEventListener("click", showCelsius);
