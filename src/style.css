@@ -107,25 +107,37 @@ city:first-letter {
   font-size: 14px;
 }
 
+.today-desc:first-letter {
+  text-transform: capitalize;
+}
+
 .cards {
   max-width: 150px;
 }
 
 .cards-body {
-  padding: 8px;
+  padding: 5px;
   line-height: 1;
 }
 
 .cards-text {
   text-align: center;
-  font-size: 20px;
   margin-bottom: 0;
+}
+
+#forecast1-img, #forecast2-img, #forecast3-img {
+  height:55px;
+  width:55px;
 }
 
 .weather-descs {
   text-align: center;
   display: block;
   font-size: 12px;
+}
+
+.weather-descs:first-letter {
+  text-transform: capitalize;
 }
 
 footer {
