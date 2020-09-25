@@ -140,6 +140,11 @@ function getCurrentPosition() {
 let myButton = document.querySelector("#current-location-btn");
 myButton.addEventListener("click", getCurrentPosition);
 
+//Error 404 API
+function requestFailed(error) {
+    alert("Please insert correct city name");
+}
+
 // city Input API
 function search(event) {
     event.preventDefault();
@@ -152,7 +157,7 @@ function search(event) {
         let units = "metric";
         let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
         //console.log(apiUrl);
-        axios.get(apiUrl).then(showTemp);
+        axios.get(apiUrl).then(showTemp).catch(requestFailed);
 
         let keyApi = "67a9f186348f05c767ebc82bbd14474d";
         apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${keyApi}&units=${units}`;
