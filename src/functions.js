@@ -1,4 +1,3 @@
-
 //change Background img
 function changeBackground(weather) {
     let body = document.querySelector("body");
